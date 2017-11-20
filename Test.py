@@ -6,7 +6,7 @@ def test():
     a = np.zeros(5)
     print(a)
     return a
-#this is changing things
+#this is changing
 def main():
     test()
 
