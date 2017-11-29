@@ -7,7 +7,6 @@ def test():
     print(a)
     return a
 # this is changing
-# this is changing twice
 def main():
     test()
 
