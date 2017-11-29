@@ -13,6 +13,7 @@ Updating to the Latest Repository (GitHub) Version
 Pushing Commits to the Repository (GitHub)
 3. After applying changes to a file or files you need to 'commit' (CTRL+K) to those changes
     i. The files marked in blue are files that you have changed in some way
+        Note: do not update files in the '.idea' folder
     ii. put in your email/username/name in the author box at the top right and it should pop-up with your GitHub account, click on that
     iii. In the 'commit message' box briefly describe what all you changed for others to see
     iv. Click 'Commit'
