@@ -1,2 +1,28 @@
-WHEN YOU OPEN PYCHARM, UPDATE YOUR PROJECT (AUTOMATIALLY)
++----------------------------------------------+
+|  INSTRUCTIONS FOR UNING GITHUB WITH PYCHARM  |
++----------------------------------------------+
+Note: make sure you already have 'Git' installed on your system and also that you have a GitHub account
 
+Git download: --=  https://git-scm.com/download/win  =--
+
+Updating to the Latest Repository (GitHub) Version
+1. After opening PyCharm, update your project (CTRL+T)
+    i. make sure you have it set to 'Default Branch' and 'Using Stash'
+2. Your files should now be current with the latest version ON GITHUB
+
+Pushing Commits to the Repository (GitHub)
+3. After applying changes to a file or files you need to 'commit' (CTRL+K) to those changes
+    i. The files marked in blue are files that you have changed in some way
+    ii. put in your email/username/name in the author box at the top right and it should pop-up with your GitHub account, click on that
+    iii. In the 'commit message' box briefly describe what all you changed for others to see
+    iv. Click 'Commit'
+        Note: the changes will NOT take effect until you 'push' them to GitHub, therebye syncing your files with GitHub
+        Also: you can do more than one commit in one session, just make sure to push them when your done
+4. To 'push' files, do (CTRL+SHIFT+K) and it will show you the 'commits' your about to upload
+
+Updateing Before Pushing Commits
+5. If you want to update your files with ones that someone just pushed then do a project update
+    Note: if the update does not overwrite any of your currently 'unpushed' work then it will work fine
+        i. If it is going to overwrite your work then it SHOULD throw an error and not update
+        ii. If this is the case, you need to 'commit' the changes in just the file/files you are working on and then 'push' them
+        iii. After that the update should not throw an error
