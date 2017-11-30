@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 
 
 # x = np.array([1, 2, 4, 5])  # sort data points by increasing x value
-# y = np.array([2, 1, 4, 3])
+# y = np.array([2, 1, 4, 3]) Hi
 
 x, y = np.loadtxt('Ground_data_test.txt', skiprows = 1, unpack = True)
 
