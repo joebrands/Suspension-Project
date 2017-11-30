@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>541</width>
+    <width>550</width>
     <height>462</height>
    </rect>
   </property>
@@ -21,7 +21,7 @@
     <rect>
      <x>10</x>
      <y>10</y>
-     <width>521</width>
+     <width>531</width>
      <height>91</height>
     </rect>
    </property>
@@ -59,7 +59,7 @@
      <rect>
       <x>30</x>
       <y>60</y>
-      <width>111</width>
+      <width>81</width>
       <height>21</height>
      </rect>
     </property>
@@ -71,32 +71,10 @@
      </font>
     </property>
     <property name="text">
-     <string>Track Length [m]</string>
+     <string>Track Length</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-    </property>
-   </widget>
-   <widget class="QSpinBox" name="spinBox_tracklength">
-    <property name="enabled">
-     <bool>false</bool>
-    </property>
-    <property name="geometry">
-     <rect>
-      <x>150</x>
-      <y>60</y>
-      <width>71</width>
-      <height>22</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <weight>50</weight>
-      <bold>false</bold>
-     </font>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignCenter</set>
     </property>
    </widget>
    <widget class="QTextEdit" name="textEdit_filepath">
@@ -107,7 +85,7 @@
      <rect>
       <x>230</x>
       <y>40</y>
-      <width>281</width>
+      <width>291</width>
       <height>41</height>
      </rect>
     </property>
@@ -131,13 +109,53 @@
      <string>Filepath Chosen</string>
     </property>
    </widget>
+   <widget class="QDoubleSpinBox" name="doubleSpinBox_tracklength">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>120</x>
+      <y>60</y>
+      <width>101</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <weight>50</weight>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+    <property name="buttonSymbols">
+     <enum>QAbstractSpinBox::NoButtons</enum>
+    </property>
+    <property name="specialValueText">
+     <string/>
+    </property>
+    <property name="suffix">
+     <string> m</string>
+    </property>
+    <property name="decimals">
+     <number>4</number>
+    </property>
+    <property name="maximum">
+     <double>1000.000000000000000</double>
+    </property>
+    <property name="singleStep">
+     <double>0.000000000000000</double>
+    </property>
+   </widget>
   </widget>
   <widget class="QGroupBox" name="groupBox_2">
    <property name="geometry">
     <rect>
      <x>270</x>
      <y>110</y>
-     <width>261</width>
+     <width>271</width>
      <height>141</height>
     </rect>
    </property>
@@ -156,7 +174,7 @@
      <rect>
       <x>-10</x>
       <y>20</y>
-      <width>181</width>
+      <width>161</width>
       <height>21</height>
      </rect>
     </property>
@@ -168,7 +186,7 @@
      </font>
     </property>
     <property name="text">
-     <string>Max Shock Displacement [m]</string>
+     <string>Max Shock Displacement</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -177,7 +195,7 @@
    <widget class="QLabel" name="label_6">
     <property name="geometry">
      <rect>
-      <x>50</x>
+      <x>30</x>
       <y>80</y>
       <width>121</width>
       <height>21</height>
@@ -191,7 +209,7 @@
      </font>
     </property>
     <property name="text">
-     <string>Tire Stiffness [N m]</string>
+     <string>Tire Stiffness</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -200,7 +218,7 @@
    <widget class="QLabel" name="label_5">
     <property name="geometry">
      <rect>
-      <x>30</x>
+      <x>10</x>
       <y>50</y>
       <width>141</width>
       <height>21</height>
@@ -214,7 +232,7 @@
      </font>
     </property>
     <property name="text">
-     <string>Shock Springrate [N m]</string>
+     <string>Shock Springrate</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -223,7 +241,7 @@
    <widget class="QLabel" name="label_7">
     <property name="geometry">
      <rect>
-      <x>80</x>
+      <x>60</x>
       <y>110</y>
       <width>91</width>
       <height>21</height>
@@ -243,69 +261,12 @@
      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
     </property>
    </widget>
-   <widget class="QSpinBox" name="spinBox_shockdisp">
-    <property name="geometry">
-     <rect>
-      <x>180</x>
-      <y>20</y>
-      <width>71</width>
-      <height>22</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <weight>50</weight>
-      <bold>false</bold>
-     </font>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignCenter</set>
-    </property>
-   </widget>
-   <widget class="QSpinBox" name="spinBox_shockspring">
-    <property name="geometry">
-     <rect>
-      <x>180</x>
-      <y>50</y>
-      <width>71</width>
-      <height>22</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <weight>50</weight>
-      <bold>false</bold>
-     </font>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignCenter</set>
-    </property>
-   </widget>
-   <widget class="QSpinBox" name="spinBox_tirespring">
-    <property name="geometry">
-     <rect>
-      <x>180</x>
-      <y>80</y>
-      <width>71</width>
-      <height>22</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <weight>50</weight>
-      <bold>false</bold>
-     </font>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignCenter</set>
-    </property>
-   </widget>
    <widget class="QSpinBox" name="spinBox_dampingfac">
     <property name="geometry">
      <rect>
-      <x>180</x>
+      <x>160</x>
       <y>110</y>
-      <width>71</width>
+      <width>101</width>
       <height>22</height>
      </rect>
     </property>
@@ -317,6 +278,117 @@
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QDoubleSpinBox" name="doubleSpinBox_shockdisp">
+    <property name="geometry">
+     <rect>
+      <x>160</x>
+      <y>20</y>
+      <width>101</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <weight>50</weight>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+    <property name="buttonSymbols">
+     <enum>QAbstractSpinBox::NoButtons</enum>
+    </property>
+    <property name="specialValueText">
+     <string/>
+    </property>
+    <property name="suffix">
+     <string> m</string>
+    </property>
+    <property name="decimals">
+     <number>4</number>
+    </property>
+    <property name="maximum">
+     <double>1.000000000000000</double>
+    </property>
+    <property name="singleStep">
+     <double>0.000000000000000</double>
+    </property>
+   </widget>
+   <widget class="QDoubleSpinBox" name="doubleSpinBox_shockspring">
+    <property name="geometry">
+     <rect>
+      <x>160</x>
+      <y>50</y>
+      <width>101</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <weight>50</weight>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+    <property name="buttonSymbols">
+     <enum>QAbstractSpinBox::NoButtons</enum>
+    </property>
+    <property name="specialValueText">
+     <string/>
+    </property>
+    <property name="suffix">
+     <string> N m</string>
+    </property>
+    <property name="decimals">
+     <number>4</number>
+    </property>
+    <property name="maximum">
+     <double>1000.000000000000000</double>
+    </property>
+    <property name="singleStep">
+     <double>0.000000000000000</double>
+    </property>
+   </widget>
+   <widget class="QDoubleSpinBox" name="doubleSpinBox_tirespring">
+    <property name="geometry">
+     <rect>
+      <x>160</x>
+      <y>80</y>
+      <width>101</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <weight>50</weight>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+    <property name="buttonSymbols">
+     <enum>QAbstractSpinBox::NoButtons</enum>
+    </property>
+    <property name="specialValueText">
+     <string/>
+    </property>
+    <property name="suffix">
+     <string> N m</string>
+    </property>
+    <property name="decimals">
+     <number>4</number>
+    </property>
+    <property name="maximum">
+     <double>1000.000000000000000</double>
+    </property>
+    <property name="singleStep">
+     <double>0.000000000000000</double>
     </property>
    </widget>
   </widget>
@@ -342,8 +414,54 @@
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>40</x>
+      <x>50</x>
       <y>20</y>
+      <width>81</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+      <weight>50</weight>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>Body Weight</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_2">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>50</y>
+      <width>91</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+      <weight>50</weight>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>CG Location</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_3">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>80</y>
       <width>121</width>
       <height>21</height>
      </rect>
@@ -356,53 +474,7 @@
      </font>
     </property>
     <property name="text">
-     <string>Body Weight [kg]</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_2">
-    <property name="geometry">
-     <rect>
-      <x>70</x>
-      <y>50</y>
-      <width>91</width>
-      <height>21</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>10</pointsize>
-      <weight>50</weight>
-      <bold>false</bold>
-     </font>
-    </property>
-    <property name="text">
-     <string>CG Location [m]</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_3">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>80</y>
-      <width>151</width>
-      <height>21</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>10</pointsize>
-      <weight>50</weight>
-      <bold>false</bold>
-     </font>
-    </property>
-    <property name="text">
-     <string>Wheel &amp; Tire Weight [kg]</string>
+     <string>Wheel &amp; Tire Weight</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -411,7 +483,7 @@
    <widget class="QLabel" name="label_4">
     <property name="geometry">
      <rect>
-      <x>70</x>
+      <x>40</x>
       <y>110</y>
       <width>91</width>
       <height>21</height>
@@ -425,81 +497,18 @@
      </font>
     </property>
     <property name="text">
-     <string>Tire Radius [m]</string>
+     <string>Tire Radius</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
     </property>
    </widget>
-   <widget class="QSpinBox" name="spinBox_tireradius">
-    <property name="geometry">
-     <rect>
-      <x>170</x>
-      <y>110</y>
-      <width>71</width>
-      <height>22</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <weight>50</weight>
-      <bold>false</bold>
-     </font>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignCenter</set>
-    </property>
-   </widget>
-   <widget class="QSpinBox" name="spinBox_wheelweight">
-    <property name="geometry">
-     <rect>
-      <x>170</x>
-      <y>80</y>
-      <width>71</width>
-      <height>22</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <weight>50</weight>
-      <bold>false</bold>
-     </font>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignCenter</set>
-    </property>
-    <property name="readOnly">
-     <bool>false</bool>
-    </property>
-    <property name="maximum">
-     <number>1000</number>
-    </property>
-   </widget>
-   <widget class="QSpinBox" name="spinBox_CG">
-    <property name="geometry">
-     <rect>
-      <x>170</x>
-      <y>50</y>
-      <width>71</width>
-      <height>22</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <weight>50</weight>
-      <bold>false</bold>
-     </font>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignCenter</set>
-    </property>
-   </widget>
    <widget class="QDoubleSpinBox" name="doubleSpinBox_bodyweight">
     <property name="geometry">
      <rect>
-      <x>170</x>
+      <x>140</x>
       <y>20</y>
-      <width>71</width>
+      <width>101</width>
       <height>22</height>
      </rect>
     </property>
@@ -517,6 +526,129 @@
     </property>
     <property name="specialValueText">
      <string/>
+    </property>
+    <property name="suffix">
+     <string> kg</string>
+    </property>
+    <property name="decimals">
+     <number>4</number>
+    </property>
+    <property name="maximum">
+     <double>1000.000000000000000</double>
+    </property>
+    <property name="singleStep">
+     <double>0.000000000000000</double>
+    </property>
+   </widget>
+   <widget class="QDoubleSpinBox" name="doubleSpinBox_CG">
+    <property name="geometry">
+     <rect>
+      <x>140</x>
+      <y>50</y>
+      <width>101</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <weight>50</weight>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+    <property name="buttonSymbols">
+     <enum>QAbstractSpinBox::NoButtons</enum>
+    </property>
+    <property name="specialValueText">
+     <string/>
+    </property>
+    <property name="suffix">
+     <string> m</string>
+    </property>
+    <property name="decimals">
+     <number>4</number>
+    </property>
+    <property name="maximum">
+     <double>1.000000000000000</double>
+    </property>
+    <property name="singleStep">
+     <double>0.000000000000000</double>
+    </property>
+   </widget>
+   <widget class="QDoubleSpinBox" name="doubleSpinBox_wheelweight">
+    <property name="geometry">
+     <rect>
+      <x>140</x>
+      <y>80</y>
+      <width>101</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <weight>50</weight>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+    <property name="buttonSymbols">
+     <enum>QAbstractSpinBox::NoButtons</enum>
+    </property>
+    <property name="specialValueText">
+     <string/>
+    </property>
+    <property name="suffix">
+     <string> kg</string>
+    </property>
+    <property name="decimals">
+     <number>4</number>
+    </property>
+    <property name="maximum">
+     <double>1000.000000000000000</double>
+    </property>
+    <property name="singleStep">
+     <double>0.000000000000000</double>
+    </property>
+   </widget>
+   <widget class="QDoubleSpinBox" name="doubleSpinBox_tireradius">
+    <property name="geometry">
+     <rect>
+      <x>140</x>
+      <y>110</y>
+      <width>101</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <weight>50</weight>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+    <property name="buttonSymbols">
+     <enum>QAbstractSpinBox::NoButtons</enum>
+    </property>
+    <property name="specialValueText">
+     <string/>
+    </property>
+    <property name="suffix">
+     <string> m</string>
+    </property>
+    <property name="decimals">
+     <number>4</number>
+    </property>
+    <property name="maximum">
+     <double>10.000000000000000</double>
+    </property>
+    <property name="singleStep">
+     <double>0.000000000000000</double>
     </property>
    </widget>
   </widget>
@@ -544,7 +676,7 @@
      <rect>
       <x>20</x>
       <y>20</y>
-      <width>141</width>
+      <width>111</width>
       <height>21</height>
      </rect>
     </property>
@@ -556,7 +688,7 @@
      </font>
     </property>
     <property name="text">
-     <string>Wishbone Length [m]</string>
+     <string>Wishbone Length</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -565,7 +697,7 @@
    <widget class="QLabel" name="label_12">
     <property name="geometry">
      <rect>
-      <x>30</x>
+      <x>0</x>
       <y>50</y>
       <width>131</width>
       <height>21</height>
@@ -585,31 +717,12 @@
      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
     </property>
    </widget>
-   <widget class="QSpinBox" name="spinBox_wblength">
-    <property name="geometry">
-     <rect>
-      <x>170</x>
-      <y>20</y>
-      <width>71</width>
-      <height>22</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <weight>50</weight>
-      <bold>false</bold>
-     </font>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignCenter</set>
-    </property>
-   </widget>
    <widget class="QSpinBox" name="spinBox_wishboneN">
     <property name="geometry">
      <rect>
-      <x>170</x>
+      <x>140</x>
       <y>50</y>
-      <width>71</width>
+      <width>101</width>
       <height>22</height>
      </rect>
     </property>
@@ -621,6 +734,49 @@
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
+    </property>
+    <property name="minimum">
+     <number>1</number>
+    </property>
+    <property name="maximum">
+     <number>10</number>
+    </property>
+   </widget>
+   <widget class="QDoubleSpinBox" name="doubleSpinBox_wblength">
+    <property name="geometry">
+     <rect>
+      <x>140</x>
+      <y>20</y>
+      <width>101</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <weight>50</weight>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+    <property name="buttonSymbols">
+     <enum>QAbstractSpinBox::NoButtons</enum>
+    </property>
+    <property name="specialValueText">
+     <string/>
+    </property>
+    <property name="suffix">
+     <string> m</string>
+    </property>
+    <property name="decimals">
+     <number>4</number>
+    </property>
+    <property name="maximum">
+     <double>10.000000000000000</double>
+    </property>
+    <property name="singleStep">
+     <double>0.000000000000000</double>
     </property>
    </widget>
   </widget>
@@ -629,7 +785,7 @@
     <rect>
      <x>270</x>
      <y>260</y>
-     <width>261</width>
+     <width>271</width>
      <height>81</height>
     </rect>
    </property>
@@ -646,9 +802,9 @@
    <widget class="QLabel" name="label_13">
     <property name="geometry">
      <rect>
-      <x>30</x>
+      <x>40</x>
       <y>20</y>
-      <width>141</width>
+      <width>101</width>
       <height>21</height>
      </rect>
     </property>
@@ -660,7 +816,7 @@
      </font>
     </property>
     <property name="text">
-     <string>Velocity in the X [m/s]</string>
+     <string>Velocity in the X</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -669,9 +825,9 @@
    <widget class="QLabel" name="label_14">
     <property name="geometry">
      <rect>
-      <x>40</x>
+      <x>50</x>
       <y>50</y>
-      <width>131</width>
+      <width>91</width>
       <height>21</height>
      </rect>
     </property>
@@ -683,18 +839,18 @@
      </font>
     </property>
     <property name="text">
-     <string>Velocity in the Y [m/s]</string>
+     <string>Velocity in the Y</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
     </property>
    </widget>
-   <widget class="QSpinBox" name="spinBox_initXvel">
+   <widget class="QDoubleSpinBox" name="doubleSpinBox_initXvel">
     <property name="geometry">
      <rect>
-      <x>180</x>
+      <x>150</x>
       <y>20</y>
-      <width>71</width>
+      <width>111</width>
       <height>22</height>
      </rect>
     </property>
@@ -706,14 +862,32 @@
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
+    </property>
+    <property name="buttonSymbols">
+     <enum>QAbstractSpinBox::NoButtons</enum>
+    </property>
+    <property name="specialValueText">
+     <string/>
+    </property>
+    <property name="suffix">
+     <string> m/s</string>
+    </property>
+    <property name="decimals">
+     <number>4</number>
+    </property>
+    <property name="maximum">
+     <double>1000.000000000000000</double>
+    </property>
+    <property name="singleStep">
+     <double>0.000000000000000</double>
     </property>
    </widget>
-   <widget class="QSpinBox" name="spinBox_initYvel">
+   <widget class="QDoubleSpinBox" name="doubleSpinBox_initYvel">
     <property name="geometry">
      <rect>
-      <x>180</x>
+      <x>150</x>
       <y>50</y>
-      <width>71</width>
+      <width>111</width>
       <height>22</height>
      </rect>
     </property>
@@ -725,6 +899,24 @@
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
+    </property>
+    <property name="buttonSymbols">
+     <enum>QAbstractSpinBox::NoButtons</enum>
+    </property>
+    <property name="specialValueText">
+     <string/>
+    </property>
+    <property name="suffix">
+     <string> m/s</string>
+    </property>
+    <property name="decimals">
+     <number>4</number>
+    </property>
+    <property name="maximum">
+     <double>1000.000000000000000</double>
+    </property>
+    <property name="singleStep">
+     <double>0.000000000000000</double>
     </property>
    </widget>
   </widget>
@@ -733,7 +925,7 @@
     <rect>
      <x>10</x>
      <y>350</y>
-     <width>521</width>
+     <width>531</width>
      <height>61</height>
     </rect>
    </property>
@@ -766,32 +958,10 @@
      <string>Solve</string>
     </property>
    </widget>
-   <widget class="QSpinBox" name="spinBox_sag">
-    <property name="enabled">
-     <bool>false</bool>
-    </property>
-    <property name="geometry">
-     <rect>
-      <x>440</x>
-      <y>20</y>
-      <width>71</width>
-      <height>21</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <weight>50</weight>
-      <bold>false</bold>
-     </font>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignCenter</set>
-    </property>
-   </widget>
    <widget class="QLabel" name="label_15">
     <property name="geometry">
      <rect>
-      <x>250</x>
+      <x>220</x>
       <y>20</y>
       <width>181</width>
       <height>21</height>
@@ -805,10 +975,50 @@
      </font>
     </property>
     <property name="text">
-     <string>Calculated Suspension Sag [m]</string>
+     <string>Calculated Suspension Sag</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+    </property>
+   </widget>
+   <widget class="QDoubleSpinBox" name="doubleSpinBox_sag">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>410</x>
+      <y>20</y>
+      <width>111</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <weight>50</weight>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+    <property name="buttonSymbols">
+     <enum>QAbstractSpinBox::NoButtons</enum>
+    </property>
+    <property name="specialValueText">
+     <string/>
+    </property>
+    <property name="suffix">
+     <string> m</string>
+    </property>
+    <property name="decimals">
+     <number>4</number>
+    </property>
+    <property name="maximum">
+     <double>1000.000000000000000</double>
+    </property>
+    <property name="singleStep">
+     <double>0.000000000000000</double>
     </property>
    </widget>
   </widget>
