@@ -27,7 +27,7 @@ class main_window(QDialog):
         if len(filename) == 0:
             no_file()
             return
-        self.ui.textEdit_filename.setText(filename)
+        self.ui.textEdit_filepath.setText(filename)
         app.processEvents()
         QApplication.setOverrideCursor(QCursor(Qt.WaitCursor))
 
