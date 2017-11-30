@@ -34,10 +34,10 @@ class main_window(QDialog):
         file = open(filename, 'r')
         data = file.readlines()
         file.close()
-        # self.beam = Beam()
+        # self.car = quarter_car()
 
         try:
-            self.GROUND.getdata(data)
+            GROUND.getdata(data)
             print('DATA PROCESSED SUCESSFULLY')
         except:
             bad_file()
@@ -84,9 +84,8 @@ if __name__ == "__main__":
     main_win = main_window()
     sys.exit(app.exec_())
 
-class quarter_car():
-    def __init__(self, name = 'car'):
-        self.name = name
+class q_car:
+    def __init__(self):
         self.bodyweight = None
         self.CG = None
         self.wheelweight = None
@@ -101,4 +100,6 @@ class quarter_car():
         self.initYvel = 0
         self.sag = None
         self.tracklength = 0
+        self.xdata = []
+        self.ydata = []
 

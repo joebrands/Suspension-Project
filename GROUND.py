@@ -4,6 +4,7 @@
 import numpy as np
 import scipy.interpolate as interpolate
 import matplotlib.pyplot as plt
+from MAIN import car
 
 def getdata(data): # interpret the ground .txt and plot ground profile
     # x, y = np.loadtxt('GroundDataExample1.txt', skiprows=1, unpack=True)
@@ -11,7 +12,9 @@ def getdata(data): # interpret the ground .txt and plot ground profile
         line = lineN.strip().split()
 
         x = line[0]
-        y=line[1]
+        car.xdata.append(x)
+        y = line[1]
+        car.ydata.append(y)
 
         arr = np.arange(np.amin(x), np.amax(x), 0.01)
         s = interpolate.CubicSpline(x, y)
@@ -32,4 +35,4 @@ def getdata(data): # interpret the ground .txt and plot ground profile
         # ax.legend()
         plt.show()
 
-getdata()
+# getdata(data)
