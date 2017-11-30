@@ -23,7 +23,7 @@ for i in range(x.shape[0] - 1):
     # Sum over the rows of exp_x weighted by coefficients in the ith column of s.c
     segment_y = s.c[:, i].dot(exp_x)
     ax.plot(segment_x, segment_y, label='Segment {}'.format(i), ls='--', lw=3)
-    print(segment_x)
 
-ax.legend()
+
+# ax.legend()
 plt.show()
