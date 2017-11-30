@@ -11,7 +11,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
         Dialog.setObjectName("Dialog")
-        Dialog.resize(541, 421)
+        Dialog.resize(541, 462)
         Dialog.setAutoFillBackground(False)
         self.groupBox = QtWidgets.QGroupBox(Dialog)
         self.groupBox.setGeometry(QtCore.QRect(10, 10, 521, 91))
@@ -326,6 +326,20 @@ class Ui_Dialog(object):
         self.label_15.setFont(font)
         self.label_15.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
         self.label_15.setObjectName("label_15")
+        self.pushButton_solve_2 = QtWidgets.QPushButton(Dialog)
+        self.pushButton_solve_2.setGeometry(QtCore.QRect(420, 420, 111, 31))
+        font = QtGui.QFont()
+        font.setBold(False)
+        font.setWeight(50)
+        self.pushButton_solve_2.setFont(font)
+        self.pushButton_solve_2.setObjectName("pushButton_solve_2")
+        self.pushButton_solve_3 = QtWidgets.QPushButton(Dialog)
+        self.pushButton_solve_3.setGeometry(QtCore.QRect(300, 420, 111, 31))
+        font = QtGui.QFont()
+        font.setBold(False)
+        font.setWeight(50)
+        self.pushButton_solve_3.setFont(font)
+        self.pushButton_solve_3.setObjectName("pushButton_solve_3")
 
         self.retranslateUi(Dialog)
         QtCore.QMetaObject.connectSlotsByName(Dialog)
@@ -356,6 +370,8 @@ class Ui_Dialog(object):
         self.groupBox_6.setTitle(_translate("Dialog", "Calculated Data"))
         self.pushButton_solve.setText(_translate("Dialog", "Solve"))
         self.label_15.setText(_translate("Dialog", "Calculated Suspension Sag [m]"))
+        self.pushButton_solve_2.setText(_translate("Dialog", "Exit"))
+        self.pushButton_solve_3.setText(_translate("Dialog", "Clear"))
 
 
 if __name__ == "__main__":
