@@ -7,8 +7,8 @@ import matplotlib.pyplot as plt
 
 def getdata(data): # interpret the ground .txt and plot ground profile
     # x, y = np.loadtxt('GroundDataExample1.txt', skiprows=1, unpack=True)
-    for lineN in opendata_1:
-        line = lineN.strip().split(',')
+    for lineN in data:
+        line = lineN.strip().split()
 
         x = line[0]
         y=line[1]
