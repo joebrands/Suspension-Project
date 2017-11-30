@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 # x = np.array([1, 2, 4, 5])  # sort data points by increasing x value
 # y = np.array([2, 1, 4, 3])a
 
-x, y = np.loadtxt('Ground_data_test.txt', skiprows = 1, unpack = True)
+x, y = np.loadtxt('GroundDataExample1.txt', skiprows = 1, unpack = True)
 
 arr = np.arange(np.amin(x), np.amax(x), 0.01)
 s = interpolate.CubicSpline(x, y)
