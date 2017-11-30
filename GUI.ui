@@ -431,25 +431,6 @@
      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
     </property>
    </widget>
-   <widget class="QSpinBox" name="spinBox_bodyweight">
-    <property name="geometry">
-     <rect>
-      <x>170</x>
-      <y>20</y>
-      <width>71</width>
-      <height>22</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <weight>50</weight>
-      <bold>false</bold>
-     </font>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignCenter</set>
-    </property>
-   </widget>
    <widget class="QSpinBox" name="spinBox_tireradius">
     <property name="geometry">
      <rect>
@@ -487,6 +468,12 @@
     <property name="alignment">
      <set>Qt::AlignCenter</set>
     </property>
+    <property name="readOnly">
+     <bool>false</bool>
+    </property>
+    <property name="maximum">
+     <number>1000</number>
+    </property>
    </widget>
    <widget class="QSpinBox" name="spinBox_CG">
     <property name="geometry">
@@ -505,6 +492,31 @@
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QDoubleSpinBox" name="doubleSpinBox_bodyweight">
+    <property name="geometry">
+     <rect>
+      <x>170</x>
+      <y>20</y>
+      <width>71</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <weight>50</weight>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+    <property name="buttonSymbols">
+     <enum>QAbstractSpinBox::NoButtons</enum>
+    </property>
+    <property name="specialValueText">
+     <string/>
     </property>
    </widget>
   </widget>
@@ -800,7 +812,7 @@
     </property>
    </widget>
   </widget>
-  <widget class="QPushButton" name="pushButton_solve_2">
+  <widget class="QPushButton" name="pushButton_exit">
    <property name="geometry">
     <rect>
      <x>420</x>
@@ -819,7 +831,7 @@
     <string>Exit</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton_solve_3">
+  <widget class="QPushButton" name="pushButton_clear">
    <property name="geometry">
     <rect>
      <x>300</x>
