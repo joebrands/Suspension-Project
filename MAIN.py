@@ -4,7 +4,6 @@ from PyQt5.QtWidgets import QFileDialog, QMessageBox
 from PyQt5.QtGui import QCursor
 from PyQt5.QtCore import Qt
 import numpy as np
-
 from GUI import Ui_Dialog
 import GROUND
 
@@ -21,6 +20,7 @@ class main_window(QDialog):
         self.ui.pushButton_exit.clicked.connect(self.Exit)
         self.ui.pushButton_getdata.clicked.connect(self.loaddata)
         self.ui.pushButton_clear.clicked.connect(self.Clear)
+        self.ui.pushButton_graphtrack.clicked.connect(GROUND.graphtrack)
 
     def loaddata(self):
         filename = QFileDialog.getOpenFileName(self)[0]
@@ -32,15 +32,13 @@ class main_window(QDialog):
 
         file = np.loadtxt(filename, delimiter=',', skiprows=1, unpack=False)
         file = file.tolist()
-        print(file[0:3])
         data = file
-        # file = open(filename, 'r')
-        # data = file.readlines()
-        # file.close()
 
         try:
             GROUND.getdata(data)
             print('DATA PROCESSED SUCESSFULLY')
+            self.ui.doubleSpinBox_tracklength.setValue(GROUND.tracklength)
+            self.ui.doubleSpinBox_resolution.setValue(GROUND.resolution)
         except:
             bad_file()
 
@@ -50,6 +48,7 @@ class main_window(QDialog):
     # def Solve(self):
 
     def Clear(self):
+        self.ui.doubleSpinBox_resolution.clear()
         self.ui.doubleSpinBox_tracklength.clear()
         self.ui.textEdit_filepath.clear()
         self.ui.doubleSpinBox_bodyweight.clear()
@@ -73,8 +72,8 @@ def no_file():
 
 def bad_file():
     msg = QMessageBox()
-    msg.setText('Unable to process selected file')
-    msg.setWindowTitle('Bad File')
+    msg.setText('An error occurred while processing your file.')
+    msg.setWindowTitle('Process Error')
     retval = msg.exec_()
     return None
 
@@ -106,4 +105,3 @@ class q_car:
         self.ydata = []
 
 car = q_car()
-
