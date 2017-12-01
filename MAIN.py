@@ -3,6 +3,7 @@ from PyQt5.QtWidgets import QDialog, QApplication
 from PyQt5.QtWidgets import QFileDialog, QMessageBox
 from PyQt5.QtGui import QCursor
 from PyQt5.QtCore import Qt
+import numpy as np
 
 from GUI import Ui_Dialog
 import GROUND
@@ -28,13 +29,14 @@ class main_window(QDialog):
             no_file()
             return
         self.ui.textEdit_filepath.setText(filename)
-        app.processEvents()
-        QApplication.setOverrideCursor(QCursor(Qt.WaitCursor))
 
-        file = open(filename, 'r')
-        data = file.readlines()
-        file.close()
-        # self.car = quarter_car()
+        file = np.loadtxt(filename, delimiter=',', skiprows=1, unpack=False)
+        file = file.tolist()
+        print(file[0:3])
+        data = file
+        # file = open(filename, 'r')
+        # data = file.readlines()
+        # file.close()
 
         try:
             GROUND.getdata(data)
@@ -102,4 +104,6 @@ class q_car:
         self.tracklength = 0
         self.xdata = []
         self.ydata = []
+
+car = q_car()
 
