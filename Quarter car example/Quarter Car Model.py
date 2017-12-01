@@ -11,11 +11,11 @@ def ode_system(X, t, carparams, roadparams ):
     ymag=roadparams[0]
     
     #define the forcing function equation
-    if t < 5:
+    if t < 3:
         # y=ymag*np.sin(2*t)
-        y=ymag*np.sin(t)
+        y=ymag*t
     else:
-        y=5
+        y=0
     
     x1=X[0]; x1dot=X[1]; x2=X[2]; x2dot=X[3] # copy from the state array to nicer names
     
@@ -36,7 +36,7 @@ m2=1
 c1=6  # damping (shock absorber)
 k1=1 # the spring
 k2=4
-ymag = 3 # the magnitude of the forcing function
+ymag = 1 # the magnitude of the forcing function
 carparams=[m1,m2,c1,k1,k2]  #put the car parameters into a list
 roadparams=[ymag] #put the road parameters into a list
 
