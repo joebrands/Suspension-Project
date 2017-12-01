@@ -6,6 +6,7 @@ from PyQt5.QtCore import Qt
 import numpy as np
 from GUI import Ui_Dialog
 import GROUND
+import SUSPENSION
 
 class main_window(QDialog):
     def __init__(self):
@@ -15,6 +16,7 @@ class main_window(QDialog):
         self.assign_widgets()
         self.Clear()
         self.show()
+        self.bodyweight = self.ui.doubleSpinBox_bodyweight.value()
 
     def assign_widgets(self):
         self.ui.pushButton_exit.clicked.connect(self.Exit)
@@ -39,8 +41,13 @@ class main_window(QDialog):
             print('DATA PROCESSED SUCESSFULLY')
             self.ui.doubleSpinBox_tracklength.setValue(GROUND.tracklength)
             self.ui.doubleSpinBox_resolution.setValue(GROUND.resolution)
+            SUSPENSION.odedata()
+            print('SUSPENSION DATA PROCESSED SUCESSFULLY')
         except:
             bad_file()
+
+        # car.bodyweight = self.ui.doubleSpinBox_bodyweight.value()
+        # print(car.bodyweight)
 
     def Exit(self):
         app.exit()
@@ -51,7 +58,7 @@ class main_window(QDialog):
         self.ui.doubleSpinBox_resolution.clear()
         self.ui.doubleSpinBox_tracklength.clear()
         self.ui.textEdit_filepath.clear()
-        self.ui.doubleSpinBox_bodyweight.clear()
+        #self.ui.doubleSpinBox_bodyweight.clear()
         self.ui.doubleSpinBox_CG.clear()
         self.ui.doubleSpinBox_wheelweight.clear()
         self.ui.doubleSpinBox_tireradius.clear()
@@ -62,6 +69,8 @@ class main_window(QDialog):
         self.ui.doubleSpinBox_shockspring.clear()
         self.ui.doubleSpinBox_tirespring.clear()
         self.ui.doubleSpinBox_sag.clear()
+
+main_win = main_window()
 
 def no_file():
     msg = QMessageBox()
@@ -103,5 +112,8 @@ class q_car:
         self.tracklength = 0
         self.xdata = []
         self.ydata = []
+        self.wheeldisp = []
+        self.wheelpos = []
+        self.wheelvel = []
 
 car = q_car()

@@ -19,7 +19,7 @@ def getdata(data):  # interpret the ground .txt and plot ground profile
     global tracklength
     tracklength = data[n - 1][0]
     global resolution
-    resolution = tracklength / n
+    resolution = car.xdata[1]-car.xdata[0]
 
 def graphtrack():
     plt.plot(car.xdata, car.ydata)
