@@ -22,7 +22,7 @@ class main_window(QDialog):
         self.show()
 
     def assign_widgets(self):
-        self.ui.pushButton_exit.clicked.connect(app.exit())
+        self.ui.pushButton_exit.clicked.connect(self.Exit)
         self.ui.pushButton_getdata.clicked.connect(self.loaddata)
         self.ui.pushButton_clear.clicked.connect(self.Clear)
         self.ui.pushButton_graphtrack.clicked.connect(self.ground.graphtrack)
@@ -43,12 +43,12 @@ class main_window(QDialog):
         try:
             self.ground.getdata(data)
             print('DATA PROCESSED SUCESSFULLY')
-            self.ui.doubleSpinBox_tracklength.setValue(self.ground.graphtrack)
-            self.ui.doubleSpinBox_resolution.setValue(self.ground.graphtrack)
+            self.ui.doubleSpinBox_tracklength.setValue(self.ground.tracklength)
+            self.ui.doubleSpinBox_resolution.setValue(self.ground.resolution)
 
-            # self.suspension.bodyweight = self.ui.doubleSpinBox_bodyweight.value()
-            # self.suspension.odesolve()
-            # print('SUSPENSION DATA PROCESSED SUCESSFULLY')
+            self.suspension.bodyweight = self.ui.doubleSpinBox_bodyweight.value()
+            self.suspension.odesolve()
+            print('SUSPENSION DATA PROCESSED SUCESSFULLY')
         except:
             bad_file()
 
@@ -69,7 +69,8 @@ class main_window(QDialog):
         self.ui.doubleSpinBox_initYvel.setValue(0)
         self.ui.doubleSpinBox_initXvel.setValue(5)
 
-    # def Exit(self): app.exit()
+    def Exit(self):
+        app.exit()
 
     # def Solve(self):
 
@@ -88,8 +89,6 @@ class main_window(QDialog):
         self.ui.doubleSpinBox_shockspring.clear()
         self.ui.doubleSpinBox_tirespring.clear()
         self.ui.doubleSpinBox_sag.clear()
-
-main_win = main_window()
 
 def no_file():
     msg = QMessageBox()
