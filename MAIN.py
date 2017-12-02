@@ -5,16 +5,16 @@ from PyQt5.QtGui import QCursor
 from PyQt5.QtCore import Qt
 import numpy as np
 from GUI import Ui_Dialog
-from SUSPENSION import q_car_suspension
-from VEHICLE import q_car
+# from VEHICLE import q_car
+import VEHICLE
 from GROUND import Ground
+from SUSPENSION import q_car_suspension
 
 class main_window(QDialog):
     def __init__(self):
         super(main_window, self).__init__()
         self.ui = Ui_Dialog()
         self.suspension = q_car_suspension()
-        self.car = q_car()
         self.ground = Ground()
         self.ui.setupUi(self)
         self.assign_widgets()
@@ -44,10 +44,10 @@ class main_window(QDialog):
             self.ground.getdata(data)
             self.ui.doubleSpinBox_tracklength.setValue(self.ground.tracklength)
             self.ui.doubleSpinBox_resolution.setValue(self.ground.resolution)
-            self.car.tracklength = self.ground.tracklength
-            self.car.resolution = self.ground.resolution
-            self.car.xdata = self.ground.xdata
-            self.car.ydata = self.ground.ydata
+            VEHICLE.q_car.tracklength = self.ground.tracklength
+            VEHICLE.q_car.resolution = self.ground.resolution
+            VEHICLE.q_car.xdata = self.ground.xdata
+            VEHICLE.q_car.ydata = self.ground.ydata
             print('DATA PROCESSED SUCESSFULLY')
 
         except:
@@ -74,20 +74,19 @@ class main_window(QDialog):
         app.exit()
 
     def Solve(self):
-        self.car.bodyweight = self.ui.doubleSpinBox_bodyweight.value()
-        self.car.CG = self.ui.doubleSpinBox_CG.value()
-        self.car.wheelweight = self.ui.doubleSpinBox_wheelweight.value()
-        self.car.tireradius = self.ui.doubleSpinBox_tireradius.value()
-        self.car.wblength = self.ui.doubleSpinBox_wblength.value()
-        self.car.wishboneN = self.ui.spinBox_wishboneN.value()
-        self.car.shockdisp = self.ui.doubleSpinBox_shockdisp.value()
-        self.car.shockspring = self.ui.doubleSpinBox_shockspring.value()
-        self.car.tirespring = self.ui.doubleSpinBox_tirespring.value()
-        self.car.dampingfac = self.ui.spinBox_dampingfac.value()
-        self.car.initXvel = self.ui.doubleSpinBox_initXvel.value()
-        self.car.initYvel = self.ui.doubleSpinBox_initYvel.value()
-        print(self.car.xdata)
-        print(self.car.initXvel)
+        # car = q_car()
+        VEHICLE.q_car.bodyweight = self.ui.doubleSpinBox_bodyweight.value()
+        VEHICLE.q_car.CG = self.ui.doubleSpinBox_CG.value()
+        VEHICLE.q_car.wheelweight = self.ui.doubleSpinBox_wheelweight.value()
+        VEHICLE.q_car.tireradius = self.ui.doubleSpinBox_tireradius.value()
+        VEHICLE.q_car.wblength = self.ui.doubleSpinBox_wblength.value()
+        VEHICLE.q_car.wishboneN = self.ui.spinBox_wishboneN.value()
+        VEHICLE.q_car.shockdisp = self.ui.doubleSpinBox_shockdisp.value()
+        VEHICLE.q_car.shockspring = self.ui.doubleSpinBox_shockspring.value()
+        VEHICLE.q_car.tirespring = self.ui.doubleSpinBox_tirespring.value()
+        VEHICLE.q_car.dampingfac = self.ui.spinBox_dampingfac.value()
+        VEHICLE.q_car.initXvel = self.ui.doubleSpinBox_initXvel.value()
+        VEHICLE.q_car.initYvel = self.ui.doubleSpinBox_initYvel.value()
         self.suspension.odesolve()
         print('SUSPENSION DATA PROCESSED SUCESSFULLY')
 

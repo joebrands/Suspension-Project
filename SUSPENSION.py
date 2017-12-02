@@ -4,11 +4,11 @@
 import numpy as np
 from scipy.integrate import odeint
 import matplotlib.pyplot as plt
-from VEHICLE import q_car
+import VEHICLE
 
 class q_car_suspension:
     def __init__(self):
-        self.car = q_car()
+         self.wheeldisp = []
 
     def odefunc(self, disp, t, carparams, groundparams):
         bodyweight = carparams[0]
@@ -23,25 +23,26 @@ class q_car_suspension:
 
         x1ddot = (dampingfac*(x2dot - x1dot) + shockspring*(x2 - x1)) / bodyweight
         x2ddot = (-dampingfac*(x2dot - x1dot) - shockspring*(x2 - x1) + tirespring*(yNow - x2)) / bodyweight
+        return [x1dot, x1ddot, x2dot, x2ddot]
 
     def odesolve(self):
-        l = len(self.car.xdata)
-        print(self.car.xdata)
-        print(self.car.initXvel)
+        l = len(VEHICLE.q_car.xdata)
         for n in range(l):
-            t = [self.car.xdata[n]*self.car.resolution]
-            ic = [0,0,0,0]
+            t = [VEHICLE.q_car.xdata[n]*VEHICLE.q_car.resolution]
+            ic = [1,1,1,1]
 
-            yNow = self.car.ydata[n]
-            yLast = self.car.ydata[n-1]
-            carparams = [self.car.bodyweight, self.car.wheelweight, self.car.dampingfac, self.car.shockspring, self.car.tirespring]
+            yNow = VEHICLE.q_car.ydata[n]
+            yLast = VEHICLE.q_car.ydata[n-1]
+            carparams = [VEHICLE.q_car.bodyweight, VEHICLE.q_car.wheelweight, VEHICLE.q_car.dampingfac, VEHICLE.q_car.shockspring, VEHICLE.q_car.tirespring]
             groundparams = [yNow]
 
             x = odeint(self.odefunc, ic, t, args = (carparams, groundparams))
+            self.wheeldisp.append(x[0][0])
 
-        tTotal = l/self.car.initXvel
-        tLen = np.linspace(0, tTotal, 100)
-        plt.plot(tLen, x[:,0])
+        tTotal = l/VEHICLE.q_car.initXvel
+        tLen = VEHICLE.q_car.xdata
+        plt.plot(tLen, self.wheeldisp)
+        plt.show()
         print('ODESOLVE RUN SUCESSFUL')
 
 def main():
