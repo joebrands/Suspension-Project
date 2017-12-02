@@ -9,17 +9,23 @@ class q_car:
         self.wheelweight = None
         self.tireradius = None
         self.wblength = None
-        self.wishboneN = 1
+        self.wishboneN = None
         self.shockdisp = None
         self.shockspring = None
         self.tirespring = None
-        self.dampingfac = 0
+        self.dampingfac = None
         self.initXvel = None
-        self.initYvel = 0
+        self.initYvel = None
         self.sag = None
-        self.tracklength = 0
+        self.tracklength = None
+        self.resolution = None
         self.xdata = []
         self.ydata = []
         self.wheeldisp = []
         self.wheelpos = []
         self.wheelvel = []
+
+    def printtest(self):
+        print(self.bodyweight)
+        print(self.shockdisp)
+        print(self.xdata)

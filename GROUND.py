@@ -11,21 +11,21 @@ class Ground:
         self.car = q_car()
         self.tracklength = None
         self.resolution = None
+        self.xdata = []
+        self.ydata = []
 
     def getdata(self, data):  # interpret the ground .txt and plot ground profile
         n = len(data)
         for lineN in data:
-            self.car.xdata.append(lineN[0])
-            self.car.ydata.append(lineN[1])
-        # print(car.xdata)
-        # global tracklength
+            self.xdata.append(lineN[0])
+            self.ydata.append(lineN[1])
         self.tracklength = data[n - 1][0]
-        # global resolution
-        self.resolution = self.car.xdata[1]-self.car.xdata[0]
+        self.resolution = self.xdata[1] - self.xdata[0]
 
     def graphtrack(self):
-        plt.plot(self.car.xdata, self.car.ydata)
+        plt.plot(self.xdata, self.ydata)
         plt.show()
+        print('GROUND DATA PLOTTED SUCESSFULLY')
 
 # Spline Function
 # ---------------------------------------------------------
