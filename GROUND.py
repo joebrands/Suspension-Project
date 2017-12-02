@@ -4,26 +4,28 @@
 import numpy as np
 import scipy.interpolate as interpolate
 import matplotlib.pyplot as plt
-from MAIN import *
-from GUI import Ui_Dialog
+from VEHICLE import q_car
 
-tracklength = None
-resolution = None
+class Ground:
+    def __init__(self):
+        self.car = q_car()
+        self.tracklength = None
+        self.resolution = None
 
-def getdata(data):  # interpret the ground .txt and plot ground profile
-    n = len(data)
-    for lineN in data:
-        car.xdata.append(lineN[0])
-        car.ydata.append(lineN[1])
-    # print(car.xdata)
-    global tracklength
-    tracklength = data[n - 1][0]
-    global resolution
-    resolution = car.xdata[1]-car.xdata[0]
+    def getdata(self, data):  # interpret the ground .txt and plot ground profile
+        n = len(data)
+        for lineN in data:
+            self.car.xdata.append(lineN[0])
+            self.car.ydata.append(lineN[1])
+        # print(car.xdata)
+        # global tracklength
+        self.tracklength = data[n - 1][0]
+        # global resolution
+        self.resolution = self.car.xdata[1]-self.car.xdata[0]
 
-def graphtrack():
-    plt.plot(car.xdata, car.ydata)
-    plt.show()
+    def graphtrack(self):
+        plt.plot(self.car.xdata, self.car.ydata)
+        plt.show()
 
 # Spline Function
 # ---------------------------------------------------------
@@ -50,6 +52,6 @@ def main():
     file = np.loadtxt('GroundDataExample1.txt', delimiter=',', skiprows=1, unpack=False)
     file = file.tolist()
     # print(file[0:3])
-    getdata(file)
+    Ground.getdata(file)
 
 # main()  # uncomment to test this file only

@@ -7,7 +7,7 @@ import numpy as np
 from GUI import Ui_Dialog
 from SUSPENSION import q_car_suspension
 from VEHICLE import q_car
-import GROUND
+from GROUND import Ground
 
 class main_window(QDialog):
     def __init__(self):
@@ -15,6 +15,7 @@ class main_window(QDialog):
         self.ui = Ui_Dialog()
         self.suspension = q_car_suspension()
         self.car = q_car
+        self.ground = Ground()
         self.ui.setupUi(self)
         self.assign_widgets()
         self.defaultparams()
@@ -24,7 +25,7 @@ class main_window(QDialog):
         self.ui.pushButton_exit.clicked.connect(app.exit())
         self.ui.pushButton_getdata.clicked.connect(self.loaddata)
         self.ui.pushButton_clear.clicked.connect(self.Clear)
-        self.ui.pushButton_graphtrack.clicked.connect(GROUND.graphtrack)
+        self.ui.pushButton_graphtrack.clicked.connect(self.ground.graphtrack)
 
     def loaddata(self):
         filename = QFileDialog.getOpenFileName(self)[0]
@@ -33,16 +34,17 @@ class main_window(QDialog):
             no_file()
             return
         self.ui.textEdit_filepath.setText(filename)
+        # app.processEvents()
 
         file = np.loadtxt(filename, delimiter=',', skiprows=1, unpack=False)
         file = file.tolist()
         data = file
 
         try:
-            GROUND.getdata(data)
+            self.ground.getdata(data)
             print('DATA PROCESSED SUCESSFULLY')
-            self.ui.doubleSpinBox_tracklength.setValue(GROUND.tracklength)
-            self.ui.doubleSpinBox_resolution.setValue(GROUND.resolution)
+            self.ui.doubleSpinBox_tracklength.setValue(self.ground.graphtrack)
+            self.ui.doubleSpinBox_resolution.setValue(self.ground.graphtrack)
 
             # self.suspension.bodyweight = self.ui.doubleSpinBox_bodyweight.value()
             # self.suspension.odesolve()

@@ -4,7 +4,7 @@
 from scipy.integrate import odeint
 import matplotlib.pyplot as plt
 
-class q_car_suspension():
+class q_car_suspension:
     def __init__(self):
         self.bodyweight = None
 
