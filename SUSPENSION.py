@@ -66,11 +66,11 @@ def odesolvetest():
     l = 20 # [points]
     initXvel = 5 # [m/s]
     t = [1, 2]  # [sec] into the sim
-    ic = [0,0,0,0]
+    ic = [1,.2,0,0]
 
     # yNow = 1 # [m]
     # yLast = VEHICLE.q_car.ydata[n-1] # shouldnt need
-    carparamstest = [100, 10, 1, 100, 500]
+    carparamstest = [100, 10, 1, -100, -500]
     groundparamstest = [1]  # [m] yNow
 
     x = odeint(odefunctest, ic, t, args = (carparamstest, groundparamstest))
