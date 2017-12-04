@@ -87,6 +87,7 @@ class main_window(QDialog):
         VEHICLE.q_car.dampingfac = self.ui.spinBox_dampingfac.value()
         VEHICLE.q_car.initXvel = self.ui.doubleSpinBox_initXvel.value()
         VEHICLE.q_car.initYvel = self.ui.doubleSpinBox_initYvel.value()
+        print(VEHICLE.q_car.ydata)
         self.suspension.odesolve()
         print('SUSPENSION DATA PROCESSED SUCESSFULLY')
 
