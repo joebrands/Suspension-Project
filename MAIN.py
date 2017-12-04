@@ -26,7 +26,7 @@ class main_window(QDialog):
         self.ui.pushButton_getdata.clicked.connect(self.loaddata)
         self.ui.pushButton_clear.clicked.connect(self.Clear)
         self.ui.pushButton_solve.clicked.connect(self.Solve)
-        self.ui.pushButton_graphtrack.clicked.connect(self.ground.graphtrack)
+        self.ui.pushButton_graphtrack.clicked.connect(self.graphtrack)
 
     def loaddata(self):
         filename = QFileDialog.getOpenFileName(self)[0]
@@ -52,6 +52,10 @@ class main_window(QDialog):
 
         except:
             bad_file()
+    
+    def graphtrack(self):
+        self.ground.polyfitgraph()
+        print('DATA GRAPHED SUCESSFULLY')
 
     def defaultparams(self):
         self.ui.doubleSpinBox_bodyweight.setValue(100)
