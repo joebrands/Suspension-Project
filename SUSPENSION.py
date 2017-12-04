@@ -65,21 +65,19 @@ def odefunctest(disp, t, carparamstest, groundparamstest):
 def odesolvetest():
     l = 20 # [points]
     initXvel = 5 # [m/s]
-    t = [1, 2]  # [sec] into the sim
+    tTotal = l/initXvel
+    t = np.linspace(0, 20, 4)  # [sec] into the sim
     ic = [1,.2,0,0]
 
-    # yNow = 1 # [m]
-    # yLast = VEHICLE.q_car.ydata[n-1] # shouldnt need
+    yNow = np.sin(2*t) # [m]
     carparamstest = [100, 10, 1, -100, -500]
-    groundparamstest = [1]  # [m] yNow
+    groundparamstest = yNow  # [m] yNow
 
     x = odeint(odefunctest, ic, t, args = (carparamstest, groundparamstest))
-    wheeldisp = x[0][0]
+    wheeldisp = x[0]
 
-    tTotal = l/initXvel
-    tLen = l
-    # plt.plot(tLen, wheeldisp)
-    # plt.show()
+    plt.plot(t, wheeldisp)
+    plt.show()
     print('Wheel Disp. is ', wheeldisp)
     print('ODESOLVE RUN SUCESSFUL')
 #---------------------------------------------------------------------
