@@ -5,17 +5,14 @@ from PyQt5.QtGui import QCursor
 from PyQt5.QtCore import Qt
 import numpy as np
 from GUI import Ui_Dialog
-# from VEHICLE import q_car
 import VEHICLE
 from GROUND import Ground
-# from SUSPENSION import q_car_suspension
 import SUSPENSION
 
 class main_window(QDialog):
     def __init__(self):
         super(main_window, self).__init__()
         self.ui = Ui_Dialog()
-        # self.suspension = q_car_suspension()
         self.ground = Ground()
         self.ui.setupUi(self)
         self.assign_widgets()

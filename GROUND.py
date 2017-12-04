@@ -4,7 +4,6 @@
 import numpy as np
 import scipy.interpolate as interpolate
 import matplotlib.pyplot as plt
-# from VEHICLE import q_car
 import VEHICLE
 
 class Ground:
