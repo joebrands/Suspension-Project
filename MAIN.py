@@ -5,26 +5,28 @@ from PyQt5.QtGui import QCursor
 from PyQt5.QtCore import Qt
 import numpy as np
 from GUI import Ui_Dialog
+# from VEHICLE import q_car
+import VEHICLE
+from GROUND import Ground
 from SUSPENSION import q_car_suspension
-from VEHICLE import q_car
-import GROUND
 
 class main_window(QDialog):
     def __init__(self):
         super(main_window, self).__init__()
         self.ui = Ui_Dialog()
         self.suspension = q_car_suspension()
-        self.car = q_car
+        self.ground = Ground()
         self.ui.setupUi(self)
         self.assign_widgets()
         self.defaultparams()
         self.show()
 
     def assign_widgets(self):
-        self.ui.pushButton_exit.clicked.connect(app.exit())
+        self.ui.pushButton_exit.clicked.connect(self.Exit)
         self.ui.pushButton_getdata.clicked.connect(self.loaddata)
         self.ui.pushButton_clear.clicked.connect(self.Clear)
-        self.ui.pushButton_graphtrack.clicked.connect(GROUND.graphtrack)
+        self.ui.pushButton_solve.clicked.connect(self.Solve)
+        self.ui.pushButton_graphtrack.clicked.connect(self.ground.graphtrack)
 
     def loaddata(self):
         filename = QFileDialog.getOpenFileName(self)[0]
@@ -39,14 +41,15 @@ class main_window(QDialog):
         data = file
 
         try:
-            GROUND.getdata(data)
+            self.ground.getdata(data)
+            self.ui.doubleSpinBox_tracklength.setValue(self.ground.tracklength)
+            self.ui.doubleSpinBox_resolution.setValue(self.ground.resolution)
+            VEHICLE.q_car.tracklength = self.ground.tracklength
+            VEHICLE.q_car.resolution = self.ground.resolution
+            VEHICLE.q_car.xdata = self.ground.xdata
+            VEHICLE.q_car.ydata = self.ground.ydata
             print('DATA PROCESSED SUCESSFULLY')
-            self.ui.doubleSpinBox_tracklength.setValue(GROUND.tracklength)
-            self.ui.doubleSpinBox_resolution.setValue(GROUND.resolution)
 
-            # self.suspension.bodyweight = self.ui.doubleSpinBox_bodyweight.value()
-            # self.suspension.odesolve()
-            # print('SUSPENSION DATA PROCESSED SUCESSFULLY')
         except:
             bad_file()
 
@@ -67,9 +70,25 @@ class main_window(QDialog):
         self.ui.doubleSpinBox_initYvel.setValue(0)
         self.ui.doubleSpinBox_initXvel.setValue(5)
 
-    # def Exit(self): app.exit()
+    def Exit(self):
+        app.exit()
 
-    # def Solve(self):
+    def Solve(self):
+        # car = q_car()
+        VEHICLE.q_car.bodyweight = self.ui.doubleSpinBox_bodyweight.value()
+        VEHICLE.q_car.CG = self.ui.doubleSpinBox_CG.value()
+        VEHICLE.q_car.wheelweight = self.ui.doubleSpinBox_wheelweight.value()
+        VEHICLE.q_car.tireradius = self.ui.doubleSpinBox_tireradius.value()
+        VEHICLE.q_car.wblength = self.ui.doubleSpinBox_wblength.value()
+        VEHICLE.q_car.wishboneN = self.ui.spinBox_wishboneN.value()
+        VEHICLE.q_car.shockdisp = self.ui.doubleSpinBox_shockdisp.value()
+        VEHICLE.q_car.shockspring = self.ui.doubleSpinBox_shockspring.value()
+        VEHICLE.q_car.tirespring = self.ui.doubleSpinBox_tirespring.value()
+        VEHICLE.q_car.dampingfac = self.ui.spinBox_dampingfac.value()
+        VEHICLE.q_car.initXvel = self.ui.doubleSpinBox_initXvel.value()
+        VEHICLE.q_car.initYvel = self.ui.doubleSpinBox_initYvel.value()
+        self.suspension.odesolve()
+        print('SUSPENSION DATA PROCESSED SUCESSFULLY')
 
     def Clear(self):
         self.ui.doubleSpinBox_resolution.clear()
@@ -86,8 +105,6 @@ class main_window(QDialog):
         self.ui.doubleSpinBox_shockspring.clear()
         self.ui.doubleSpinBox_tirespring.clear()
         self.ui.doubleSpinBox_sag.clear()
-
-main_win = main_window()
 
 def no_file():
     msg = QMessageBox()
