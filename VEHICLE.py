@@ -24,6 +24,7 @@ class q_car:
         self.wheeldisp = []
         self.wheelpos = []
         self.wheelvel = []
+        self.file = []
 
     def printtest(self):
         print(self.bodyweight)

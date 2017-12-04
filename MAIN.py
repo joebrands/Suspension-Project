@@ -26,7 +26,7 @@ class main_window(QDialog):
         self.ui.pushButton_getdata.clicked.connect(self.loaddata)
         self.ui.pushButton_clear.clicked.connect(self.Clear)
         self.ui.pushButton_solve.clicked.connect(self.Solve)
-        self.ui.pushButton_graphtrack.clicked.connect(self.graphtrack)
+        self.ui.pushButton_graphtrack.clicked.connect(self.ground.polyfitgraph)
 
     def loaddata(self):
         filename = QFileDialog.getOpenFileName(self)[0]
@@ -38,10 +38,11 @@ class main_window(QDialog):
 
         file = np.loadtxt(filename, delimiter=',', skiprows=1, unpack=False)
         file = file.tolist()
-        data = file
+        self.data = file
+        VEHICLE.q_car.file = self.data
 
         try:
-            self.ground.getdata(data)
+            self.ground.getdata(self.data)
             self.ui.doubleSpinBox_tracklength.setValue(self.ground.tracklength)
             self.ui.doubleSpinBox_resolution.setValue(self.ground.resolution)
             VEHICLE.q_car.tracklength = self.ground.tracklength
@@ -52,10 +53,6 @@ class main_window(QDialog):
 
         except:
             bad_file()
-    
-    def graphtrack(self):
-        self.ground.polyfitgraph()
-        print('DATA GRAPHED SUCESSFULLY')
 
     def defaultparams(self):
         self.ui.doubleSpinBox_bodyweight.setValue(100)
