@@ -21,9 +21,10 @@ class q_car:
         self.resolution = None
         self.xdata = []
         self.ydata = []
-        self.wheeldisp = []
         self.wheelpos = []
         self.wheelvel = []
+        self.bodypos = []
+        self.bodyvel = []
         self.file = []
 
     def printtest(self):

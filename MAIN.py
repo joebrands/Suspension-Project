@@ -8,13 +8,14 @@ from GUI import Ui_Dialog
 # from VEHICLE import q_car
 import VEHICLE
 from GROUND import Ground
-from SUSPENSION import q_car_suspension
+# from SUSPENSION import q_car_suspension
+import SUSPENSION
 
 class main_window(QDialog):
     def __init__(self):
         super(main_window, self).__init__()
         self.ui = Ui_Dialog()
-        self.suspension = q_car_suspension()
+        # self.suspension = q_car_suspension()
         self.ground = Ground()
         self.ui.setupUi(self)
         self.assign_widgets()
@@ -58,12 +59,12 @@ class main_window(QDialog):
         self.ui.doubleSpinBox_bodyweight.setValue(100)
         self.ui.doubleSpinBox_CG.setValue(0)
         self.ui.doubleSpinBox_wheelweight.setValue(10)
-        self.ui.doubleSpinBox_tireradius.setValue(0.5)
+        self.ui.doubleSpinBox_tireradius.setValue(0.1)
 
-        self.ui.doubleSpinBox_shockdisp.setValue(0.3)
-        self.ui.doubleSpinBox_shockspring.setValue(100)
+        self.ui.doubleSpinBox_shockdisp.setValue(1)
+        self.ui.doubleSpinBox_shockspring.setValue(1000)
         self.ui.doubleSpinBox_tirespring.setValue(500)
-        self.ui.spinBox_dampingfac.setValue(1)
+        self.ui.spinBox_dampingfac.setValue(2)
 
         self.ui.doubleSpinBox_wblength.setValue(1)
         self.ui.spinBox_wishboneN.setValue(2)
@@ -88,8 +89,7 @@ class main_window(QDialog):
         VEHICLE.q_car.dampingfac = self.ui.spinBox_dampingfac.value()
         VEHICLE.q_car.initXvel = self.ui.doubleSpinBox_initXvel.value()
         VEHICLE.q_car.initYvel = self.ui.doubleSpinBox_initYvel.value()
-        print(VEHICLE.q_car.ydata)
-        self.suspension.odesolve()
+        SUSPENSION.ODEsolve()
         print('SUSPENSION DATA PROCESSED SUCESSFULLY')
 
     def Clear(self):
