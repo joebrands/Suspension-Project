@@ -4,7 +4,8 @@ import matplotlib.pyplot as plt
 
 
 #Read file or pull folr from data
-file = np.loadtxt("GroundDataExample2.txt", delimiter=',', skiprows=1, unpack=False)
+filename = "GroundDataExample3.txt"
+file = np.loadtxt(filename, delimiter=',', skiprows=1, unpack=False)
 file = file.tolist()
 #Create empty arrays for x and y variables
 h = len(file)
@@ -36,11 +37,10 @@ def ode_system(X, t, m1, m2,c1,k1,k2):
 
     return [x1dot, x1ddot, x2dot, x2ddot]
 
-# t = np.linspace(0, 20, 200)
 ic = [0,0,0,0] #Initial conditions of no velocity and no displacement from the no spring force position. BIG ASSUMPTION
 
 m1 = 100   #establishing car parameters. Must pull from GUI instead of here
-m2 = 10
+m2 = 10    #uncomment this part to run it without GUI, must comment our arguements up top as well and put in own filename
 c1 = 2000
 k1 = 1000
 k2 = 5000
