@@ -18,6 +18,7 @@ class main_window(QDialog):
         self.assign_widgets()
         self.defaultparams()
         self.show()
+        self.ui.textEdit_output.append('INITIALIZING...')
 
     def assign_widgets(self):
         self.ui.pushButton_exit.clicked.connect(self.Exit)
@@ -38,6 +39,7 @@ class main_window(QDialog):
         file = file.tolist()
         self.data = file
         VEHICLE.q_car.file = self.data
+        self.ui.textEdit_output.append('FILE READING...')
 
         try:
             self.ground.getdata(self.data)
@@ -47,10 +49,11 @@ class main_window(QDialog):
             VEHICLE.q_car.resolution = self.ground.resolution
             VEHICLE.q_car.xdata = self.ground.xdata
             VEHICLE.q_car.ydata = self.ground.ydata
-            print('DATA PROCESSED SUCESSFULLY')
+            self.ui.textEdit_output.append('DATA PROCESSED SUCESSFULLY')
 
         except:
             bad_file()
+            self.ui.textEdit_output.append('ERROR: BAD DATA FILE')
 
     def defaultparams(self):
         self.ui.doubleSpinBox_bodyweight.setValue(100)
@@ -59,8 +62,8 @@ class main_window(QDialog):
         self.ui.doubleSpinBox_tireradius.setValue(0.1)
 
         self.ui.doubleSpinBox_shockdisp.setValue(1)
-        self.ui.doubleSpinBox_shockspring.setValue(1000)
-        self.ui.doubleSpinBox_tirespring.setValue(500)
+        self.ui.doubleSpinBox_shockspring.setValue(2000)
+        self.ui.doubleSpinBox_tirespring.setValue(5000)
         self.ui.spinBox_dampingfac.setValue(2)
 
         self.ui.doubleSpinBox_wblength.setValue(1)
@@ -73,7 +76,6 @@ class main_window(QDialog):
         app.exit()
 
     def Solve(self):
-        # car = q_car()
         VEHICLE.q_car.bodyweight = self.ui.doubleSpinBox_bodyweight.value()
         VEHICLE.q_car.CG = self.ui.doubleSpinBox_CG.value()
         VEHICLE.q_car.wheelweight = self.ui.doubleSpinBox_wheelweight.value()
@@ -86,8 +88,14 @@ class main_window(QDialog):
         VEHICLE.q_car.dampingfac = self.ui.spinBox_dampingfac.value()
         VEHICLE.q_car.initXvel = self.ui.doubleSpinBox_initXvel.value()
         VEHICLE.q_car.initYvel = self.ui.doubleSpinBox_initYvel.value()
+        SUSPENSION.solvesag()
+        self.ui.doubleSpinBox_sag.setValue(VEHICLE.q_car.shockSagPercent)
+        self.ui.doubleSpinBox_maxsag.setValue(VEHICLE.q_car.sag)
+        self.ui.textEdit_output.append('SUSPENSION SAG SOLVED SUCESSFULLY')
         SUSPENSION.ODEsolve()
-        print('SUSPENSION DATA PROCESSED SUCESSFULLY')
+        self.ui.textEdit_output.append('ODESOLVE RUN SUCESSFUL')
+        self.ui.textEdit_output.append('GRAPHING...')
+        self.ui.textEdit_output.append('SUSPENSION DATA PROCESSED SUCESSFULLY')
 
     def Clear(self):
         self.ui.doubleSpinBox_resolution.clear()
@@ -104,6 +112,8 @@ class main_window(QDialog):
         self.ui.doubleSpinBox_shockspring.clear()
         self.ui.doubleSpinBox_tirespring.clear()
         self.ui.doubleSpinBox_sag.clear()
+        self.ui.textEdit_output.append('DATA CLEARED SUCESSFULLY')
+
 
 def no_file():
     msg = QMessageBox()

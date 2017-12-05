@@ -11,7 +11,9 @@ class q_car:
         self.wblength = None
         self.wishboneN = None
         self.shockdisp = None
+        self.shockSagPercent = None
         self.shockspring = None
+        self.tireSagPercent = None
         self.tirespring = None
         self.dampingfac = None
         self.initXvel = None
