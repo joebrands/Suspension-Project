@@ -99,6 +99,9 @@ class main_window(QDialog):
 
     def Clear(self):
         self.ui.doubleSpinBox_resolution.clear()
+        self.ui.spinBox_wishboneN.clear()
+        self.ui.doubleSpinBox_maxsag.clear()
+        self.ui.spinBox_dampingfac.clear()
         self.ui.doubleSpinBox_tracklength.clear()
         self.ui.textEdit_filepath.clear()
         self.ui.doubleSpinBox_bodyweight.clear()
@@ -113,7 +116,6 @@ class main_window(QDialog):
         self.ui.doubleSpinBox_tirespring.clear()
         self.ui.doubleSpinBox_sag.clear()
         self.ui.textEdit_output.append('DATA CLEARED SUCESSFULLY')
-
 
 def no_file():
     msg = QMessageBox()
