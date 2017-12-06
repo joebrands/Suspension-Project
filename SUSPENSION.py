@@ -95,7 +95,6 @@ def optimizefunc(k1, data):
 
 def optimizesag():
     data = [VEHICLE.q_car.bodyweight, 9.8, VEHICLE.q_car.shockdisp]
-    print(data)
     optimizedSag = fsolve(optimizefunc, 1000, args = data)
     return optimizedSag
 
