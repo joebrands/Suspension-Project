@@ -3,6 +3,7 @@
 # ----------------------------------------------------------------#
 import numpy as np
 from scipy.integrate import odeint
+from scipy.optimize import fsolve
 import matplotlib.pyplot as plt
 import VEHICLE
 
@@ -86,6 +87,18 @@ def solvesag():
 
     VEHICLE.q_car.sag = shockSag + tireSag
 
+def optimizefunc(k1, data):
+    m1, g, d = data
+    
+    shockSag = (((m1 * g) / k1) / d) - .3 #(shockSag / VEHICLE.q_car.shockdisp)
+    return shockSag
+
+def optimizesag():
+    data = [VEHICLE.q_car.bodyweight, 9.8, VEHICLE.q_car.shockdisp]
+    print(data)
+    optimizedSag = fsolve(optimizefunc, 1000, args = data)
+    return optimizedSag
+
 # SOLVING WITH JUST ONE POINT
 # ---------------------------------------------------------------------
 def odefunctest(disp, t, carparamstest, groundparamstest):
@@ -121,7 +134,6 @@ def odesolvetest():
     plt.show()
     print('Wheel Disp. is ', wheeldisp)
     print('ODESOLVE RUN SUCESSFUL')
-
 # ---------------------------------------------------------------------
 
 def main():

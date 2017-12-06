@@ -16,7 +16,11 @@ class main_window(QDialog):
         self.ground = Ground()
         self.ui.setupUi(self)
         self.assign_widgets()
+        self.filename = None
+        self.datafreq = None
+        self.solverun = False
         self.defaultparams()
+        self.ui.doubleSpinBox_datafreq.clear()
         self.show()
         self.ui.textEdit_output.append('INITIALIZING...')
 
@@ -25,17 +29,23 @@ class main_window(QDialog):
         self.ui.pushButton_getdata.clicked.connect(self.loaddata)
         self.ui.pushButton_clear.clicked.connect(self.Clear)
         self.ui.pushButton_solve.clicked.connect(self.Solve)
-        self.ui.pushButton_graphtrack.clicked.connect(self.ground.polyfitgraph)
-
+        self.ui.pushButton_graphtrack.clicked.connect(self.graphtrack)
+        self.ui.pushButton_optimizespring.clicked.connect(self.optimizespring)
+    
+    def datafreqcalc(self):
+        deltaT = self.ground.tracklength / self.ui.doubleSpinBox_initXvel.value()
+        self.datafreq = len(VEHICLE.q_car.xdata) / deltaT
+        self.ui.doubleSpinBox_datafreq.setValue(self.datafreq)
+    
     def loaddata(self):
-        filename = QFileDialog.getOpenFileName(self)[0]
+        self.filename = QFileDialog.getOpenFileName(self)[0]
 
-        if len(filename) == 0:
+        if len(self.filename) == 0:
             no_file()
             return
-        self.ui.textEdit_filepath.setText(filename)
+        self.ui.textEdit_filepath.setText(self.filename)
 
-        file = np.loadtxt(filename, delimiter=',', skiprows=1, unpack=False)
+        file = np.loadtxt(self.filename, delimiter=',', skiprows=1, unpack=False)
         file = file.tolist()
         self.data = file
         VEHICLE.q_car.file = self.data
@@ -49,11 +59,20 @@ class main_window(QDialog):
             VEHICLE.q_car.resolution = self.ground.resolution
             VEHICLE.q_car.xdata = self.ground.xdata
             VEHICLE.q_car.ydata = self.ground.ydata
+            self.ui.spinBox_dataN.setValue(len(VEHICLE.q_car.xdata))
+            self.datafreqcalc()
+            self.ui.doubleSpinBox_resolution.setValue(self.datafreq)
             self.ui.textEdit_output.append('DATA PROCESSED SUCESSFULLY')
 
         except:
             bad_file()
             self.ui.textEdit_output.append('ERROR: BAD DATA FILE')
+            
+    def graphtrack(self):
+        if self.filename is None:
+            no_file()
+            self.ui.textEdit_output.append('WARNING: NO DATA FILE GIVEN')
+        else: self.ground.polyfitgraph()
 
     def defaultparams(self):
         self.ui.doubleSpinBox_bodyweight.setValue(100)
@@ -76,6 +95,10 @@ class main_window(QDialog):
         app.exit()
 
     def Solve(self):
+        if self.filename is None:
+            no_file()
+            self.ui.textEdit_output.append('WARNING: NO DATA FILE GIVEN')
+            return
         VEHICLE.q_car.bodyweight = self.ui.doubleSpinBox_bodyweight.value()
         VEHICLE.q_car.CG = self.ui.doubleSpinBox_CG.value()
         VEHICLE.q_car.wheelweight = self.ui.doubleSpinBox_wheelweight.value()
@@ -96,10 +119,23 @@ class main_window(QDialog):
         self.ui.textEdit_output.append('ODESOLVE RUN SUCESSFUL')
         self.ui.textEdit_output.append('GRAPHING...')
         self.ui.textEdit_output.append('SUSPENSION DATA PROCESSED SUCESSFULLY')
-
+        self.solverun = True
+    
+    def optimizespring(self):
+        if self.solverun is True:
+            self.ui.doubleSpinBox_shockspringoptimized.setValue(SUSPENSION.optimizesag())
+            self.ui.textEdit_output.append('SHOCK SPRINGRATE OPTIMIZED SUCESSFULLY')
+        else:
+            solve_not_run()
+            self.ui.textEdit_output.append('ERROR: SOLVE NOT RUN YET')
+            return
+        
     def Clear(self):
         self.ui.doubleSpinBox_resolution.clear()
         self.ui.spinBox_wishboneN.clear()
+        self.ui.spinBox_dataN.clear()
+        self.ui.doubleSpinBox_datafreq.clear()
+        self.ui.doubleSpinBox_shockspringoptimized.clear()
         self.ui.doubleSpinBox_maxsag.clear()
         self.ui.spinBox_dampingfac.clear()
         self.ui.doubleSpinBox_tracklength.clear()
@@ -127,6 +163,13 @@ def no_file():
 def bad_file():
     msg = QMessageBox()
     msg.setText('An error occurred while processing your file.')
+    msg.setWindowTitle('Process Error')
+    retval = msg.exec_()
+    return None
+
+def solve_not_run():
+    msg = QMessageBox()
+    msg.setText('Solve has not been run yet.')
     msg.setWindowTitle('Process Error')
     retval = msg.exec_()
     return None
