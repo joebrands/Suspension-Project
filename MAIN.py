@@ -61,7 +61,6 @@ class main_window(QDialog):
             VEHICLE.q_car.ydata = self.ground.ydata
             self.ui.spinBox_dataN.setValue(len(VEHICLE.q_car.xdata))
             self.datafreqcalc()
-            self.ui.doubleSpinBox_resolution.setValue(self.datafreq)
             self.ui.textEdit_output.append('DATA PROCESSED SUCESSFULLY')
 
         except:
